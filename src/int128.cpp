@@ -77,7 +77,6 @@ Int128& Int128::operator-=(const Int128& other) noexcept {
 }
 
 Int128 Int128::operator*(const Int128& other) const noexcept {
-    // Multiply in unsigned to avoid UB, then reinterpret back.
     return from_raw(static_cast<i128>(static_cast<u128>(value_) * static_cast<u128>(other.value_)));
 }
 
