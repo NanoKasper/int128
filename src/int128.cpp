@@ -32,7 +32,7 @@ Int128::Int128(std::string_view s) {
         const u128 digit = static_cast<u128>(ch - '0');
 
         if (mag > (limit - digit) / 10) {
-            mag = limit; // clamp; error handling not required
+            mag = limit;
             break;
         }
         mag = mag * 10 + digit;
@@ -41,7 +41,6 @@ Int128::Int128(std::string_view s) {
     if (!neg) {
         value_ = static_cast<i128>(mag);
     } else {
-        // Create negative value safely even for 2^127
         const u128 u = u128{0} - mag;
         value_ = static_cast<i128>(u);
     }
